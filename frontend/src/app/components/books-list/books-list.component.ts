@@ -12,6 +12,8 @@ import { Book } from '../../models/book';
 export class BooksListComponent implements OnInit {
 
   books$: Observable<Page<Book> | Error>;
+  private yes: string = 'Yes';
+  private no: string = 'No';
 
   constructor(
     private bookService: BookService,
@@ -22,6 +24,13 @@ export class BooksListComponent implements OnInit {
     // TODO this observable should emit books taking into consideration pagination, sorting and filtering options.
     this.books$ = this.bookService.getBooks({});
 
+  }
+
+  isAvailable(book): string {
+    if (book.status == 'AVAILABLE') {
+      return this.yes
+    }
+    return this.no
   }
 
 }
