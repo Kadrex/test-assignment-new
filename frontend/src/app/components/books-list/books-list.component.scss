@@ -2,3 +2,11 @@
   max-width: 1024px;
   margin: 2em auto;
 }
+
+.mat-row {
+  cursor: pointer;
+}
+
+.mat-row:hover {
+  background-color: #F5F5F5;
+}
