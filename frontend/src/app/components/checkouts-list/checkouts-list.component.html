@@ -1,0 +1,24 @@
+<div class="container mat-elevation-z4">
+  <div *ngIf="(checkouts$ | async) as checkouts">
+    <mat-table [dataSource]="checkouts.content" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="book">
+        <mat-header-cell *matHeaderCellDef>Book borrowed</mat-header-cell>
+        <mat-cell *matCellDef="let checkout">{{checkout.borrowedBook.title}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="borrower">
+        <mat-header-cell *matHeaderCellDef>Borrower</mat-header-cell>
+        <mat-cell *matCellDef="let checkout">{{checkout.borrowerFirstName}} {{checkout.borrowerLastName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="due">
+        <mat-header-cell *matHeaderCellDef>Borrowed due</mat-header-cell>
+        <mat-cell *matCellDef="let checkout">{{checkout.dueDate}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['book', 'borrower', 'due']"></mat-header-row>
+      <mat-row *matRowDef="let checkout; columns: ['book', 'borrower', 'due']" [routerLink]="['/checkouts', checkout.id]"></mat-row>
+    </mat-table>
+  </div>
+</div>
