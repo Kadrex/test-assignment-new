@@ -4,17 +4,21 @@
 
       <ng-container matColumnDef="book">
         <mat-header-cell *matHeaderCellDef>Book borrowed</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.book_id}}</mat-cell>
+        <mat-cell *matCellDef="let checkout">{{checkout.borrowedBook.title}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="borrower">
         <mat-header-cell *matHeaderCellDef>Borrower</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.borrower_first_name}}</mat-cell>
-        <mat-cell *matCellDef="let row">{{row.borrower_last_name}}</mat-cell>
+        <mat-cell *matCellDef="let checkout">{{checkout.borrowerFirstName}} {{checkout.borrowerLastName}}</mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="['book', 'borrower']"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: ['book', 'borrower']" [routerLink]="['/checkouts', row.id]"></mat-row>
+      <ng-container matColumnDef="due">
+        <mat-header-cell *matHeaderCellDef>Borrowed due</mat-header-cell>
+        <mat-cell *matCellDef="let checkout">{{checkout.dueDate}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['book', 'borrower', 'due']"></mat-header-row>
+      <mat-row *matRowDef="let checkout; columns: ['book', 'borrower', 'due']" [routerLink]="['/checkouts', checkout.id]"></mat-row>
     </mat-table>
   </div>
 </div>
