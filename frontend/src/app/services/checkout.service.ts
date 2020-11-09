@@ -18,9 +18,9 @@ export class CheckoutService {
   ) {
   }
 
-  getCheckouts(): Observable<Page<Checkout> | Error> {
+  getCheckouts(filter: Partial<PageRequest>): Observable<Page<Checkout> | Error> {
     const url = this.baseUrl + '/getCheckouts';
-    const params = RestUtil.buildParamsFromPageRequest({});
+    const params = RestUtil.buildParamsFromPageRequest(filter);
     return this.http.get<Page<Checkout>>(url, {params});
   }
 
