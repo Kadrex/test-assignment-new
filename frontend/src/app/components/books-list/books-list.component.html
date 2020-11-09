@@ -1,29 +1,28 @@
 <div class="container mat-elevation-z4">
-  <div *ngIf="(books$ | async) as books">
-    <mat-table [dataSource]="books.content" class="mat-elevation-z8">
+    <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let book">{{book.title}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="author">
-        <mat-header-cell *matHeaderCellDef>Author</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.author}}</mat-cell>
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Author</mat-header-cell>
+        <mat-cell *matCellDef="let book">{{book.author}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="genre">
-        <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.genre}}</mat-cell>
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Genre</mat-header-cell>
+        <mat-cell *matCellDef="let book">{{book.genre}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="available">
         <mat-header-cell *matHeaderCellDef>Available</mat-header-cell>
-        <mat-cell *matCellDef="let row" [attr.colspan]>{{isAvailable(row)}}</mat-cell>
+        <mat-cell *matCellDef="let book" [attr.colspan]>{{isAvailable(book)}}</mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="['title', 'author', 'genre', 'available']"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: ['title', 'author', 'genre', 'available']" [routerLink]="['/books', row.id]"></mat-row>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let book; columns: displayedColumns" [routerLink]="['/books', book.id]"></mat-row>
     </mat-table>
-  </div>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
 </div>
