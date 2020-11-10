@@ -1,4 +1,10 @@
 .container {
-  max-width: 512px;
+  min-width: 400px;
   margin: 6em auto;
+  width: 33%;
+}
+
+.button-container {
+  margin-top: 20px;
+  width: min-content;
 }

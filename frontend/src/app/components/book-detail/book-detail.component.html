@@ -1,5 +1,5 @@
-<div class="container mat-elevation-z4">
-  <mat-card *ngIf="(book$ | async) as book">
+<div class="container" *ngIf="(book$ | async) as book">
+  <mat-card>
     <mat-card-title>{{book.title}}</mat-card-title>
     <mat-card-content>
       <mat-nav-list>
@@ -18,7 +18,7 @@
         <a mat-list-item>
           Status: {{book.status}}
         </a>
-        <a mat-list-item *ngIf="book.status == 'BORROWED'">
+        <a mat-list-item *ngIf="book.status === BORROWED">
           Borrowed due date: {{book.dueDate}}
         </a>
         <a mat-list-item>
@@ -30,5 +30,10 @@
       </mat-nav-list>
     </mat-card-content>
   </mat-card>
+  <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
+       [matTooltipDisabled]="isBookAvailable(book.status)" class="button-container">
+  <button class="button-delete" [disabled]="!isBookAvailable(book.status)"
+          (click)="openDialog()" mat-raised-button color="warn">Delete</button>
+  </div>
 </div>
 
