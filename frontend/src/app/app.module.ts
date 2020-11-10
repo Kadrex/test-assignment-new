@@ -10,6 +10,9 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
 import { HttpClientModule } from '@angular/common/http';
 import { CheckoutsListComponent } from "./components/checkouts-list/checkouts-list.component";
 import {CheckoutDetailComponent} from "./components/checkout-detail/checkout-detail.component";
+import {BookFormComponent} from "./components/book-form/book-form.component";
+import {FormsModule} from "@angular/forms";
+import {ConfirmationDialog} from "./components/confirmation-dialog/confirmation-dialog.component";
 
 
 @NgModule({
@@ -18,14 +21,17 @@ import {CheckoutDetailComponent} from "./components/checkout-detail/checkout-det
     BooksListComponent,
     BookDetailComponent,
     CheckoutsListComponent,
-    CheckoutDetailComponent
+    CheckoutDetailComponent,
+    BookFormComponent,
+    ConfirmationDialog
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

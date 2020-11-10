@@ -1,0 +1,43 @@
+<div class="container" *ngIf="bookIsLoaded">
+  <div class="page-title">
+    <a>{{pageTitle}}</a>
+  </div>
+  <div class="mat-elevation-z4">
+  <div class="form-container">
+    <p>
+      <mat-form-field class="book-info-field-large" appearance="fill">
+        <mat-label>Book title</mat-label>
+        <input matInput required [(ngModel)]="book.title" ngDefaultControl>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="book-info-field-large" appearance="fill">
+        <mat-label>Author name</mat-label>
+        <input matInput [(ngModel)]="book.author" required ngDefaultControl>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="book-info-field-small first-field-on-row" appearance="fill">
+        <mat-label>Genre</mat-label>
+        <mat-select required [(ngModel)]="book.genre">
+          <mat-option *ngFor="let genre of genres" ngDefaultControl [value]="genre">{{genre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="book-info-field-small" appearance="fill">
+        <mat-label>Year written</mat-label>
+        <input type="number" [(ngModel)]="book.year" matInput required min="0" max="{{year}}" ngDefaultControl>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="book-info-field-large" appearance="fill">
+        <mat-label>Comment</mat-label>
+        <textarea [(ngModel)]="book.comment" matInput ngDefaultControl></textarea>
+      </mat-form-field>
+    </p>
+  </div>
+</div>
+  <button [disabled]="!isBookValid()" (click)="saveBookAndTable()" mat-raised-button color="primary">Save</button>
+  <button [disabled]="!isBookValid()" (click)="saveBookAndView()" mat-raised-button color="primary">Save and view</button>
+  <button mat-raised-button color="accent" routerLink="/books">Cancel</button>
+</div>

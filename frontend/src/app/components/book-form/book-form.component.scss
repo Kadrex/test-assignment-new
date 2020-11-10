@@ -1,0 +1,38 @@
+.container {
+  max-width: 900px;
+  margin: 2em auto;
+  width: 60%;
+  min-width: 400px;
+}
+
+.form-container {
+  width: 50%;
+  margin: auto;
+  padding: 3em;
+  min-width: 300px;
+}
+
+.book-info-field-large {
+  width: 100%;
+}
+
+.first-field-on-row {
+  padding-right: 10%;
+}
+
+.book-info-field-small {
+  width: 45%;
+}
+
+button {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 45px;
+  font-size: 23px;
+  font-weight: 500;
+  height: 45px;
+}
