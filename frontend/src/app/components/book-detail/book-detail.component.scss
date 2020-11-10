@@ -4,7 +4,15 @@
   width: 33%;
 }
 
-.button-container {
+.buttons-container {
   margin-top: 20px;
+}
+
+.delete-button-container {
   width: min-content;
+  display: inline-block;
+}
+
+.first-button-in-row {
+  margin-right: 20px;
 }

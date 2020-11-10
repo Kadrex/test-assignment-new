@@ -30,10 +30,12 @@
       </mat-nav-list>
     </mat-card-content>
   </mat-card>
-  <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
-       [matTooltipDisabled]="isBookAvailable(book.status)" class="button-container">
-  <button class="button-delete" [disabled]="!isBookAvailable(book.status)"
-          (click)="openDialog()" mat-raised-button color="warn">Delete</button>
+  <div class="buttons-container">
+    <button class="first-button-in-row" mat-raised-button color="primary" [routerLink]="['/book-form/edit', book.id]">Edit</button>
+    <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
+         [matTooltipDisabled]="isBookAvailable(book.status)" class="delete-button-container">
+    <button class="activity-button" [disabled]="!isBookAvailable(book.status)"
+            (click)="openDialog()" mat-raised-button color="warn">Delete</button>
+  </div>
   </div>
 </div>
-

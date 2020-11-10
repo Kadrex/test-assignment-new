@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="bookIsLoaded">
   <div class="page-title">
-    <a>New book</a>
+    <a>{{pageTitle}}</a>
   </div>
   <div class="mat-elevation-z4">
   <div class="form-container">
@@ -37,6 +37,7 @@
     </p>
   </div>
 </div>
-  <button [disabled]="!isBookValid()" (click)="saveBook()" mat-raised-button color="primary">Save</button>
+  <button [disabled]="!isBookValid()" (click)="saveBookAndTable()" mat-raised-button color="primary">Save</button>
+  <button [disabled]="!isBookValid()" (click)="saveBookAndView()" mat-raised-button color="primary">Save and view</button>
   <button mat-raised-button color="accent" routerLink="/books">Cancel</button>
 </div>
