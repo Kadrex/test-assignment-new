@@ -19,7 +19,9 @@
     </mat-card-content>
   </mat-card>
   <div class="buttons-container">
-    <button class="first-button-in-row" mat-raised-button color="primary" [routerLink]="['/checkout-form', checkout.id]">Edit</button>
+    <button class="not-last-button-in-row" mat-raised-button color="accent" routerLink="/checkouts">Back</button>
+    <button class="not-last-button-in-row" mat-raised-button color="primary" [routerLink]="['/checkout-form', checkout.id]">Edit</button>
+    <button mat-raised-button color="primary" (click)="openDialog(checkout.id, checkout.borrowedBook)">Return the book</button>
   </div>
 </div>
 
