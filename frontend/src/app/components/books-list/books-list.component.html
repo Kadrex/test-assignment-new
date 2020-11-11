@@ -3,6 +3,10 @@
     <a>Books</a>
   </div>
   <div class="mat-elevation-z4">
+    <mat-form-field class="filter-freetext">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Alice in Wonderland">
+    </mat-form-field>
     <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="title">

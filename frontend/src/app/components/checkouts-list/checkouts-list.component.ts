@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { Observable } from 'rxjs';
 import { Page } from '../../models/page';
 import {Checkout} from "../../models/checkout";
 import {CheckoutService} from "../../services/checkout.service";
@@ -51,4 +50,10 @@ export class CheckoutsListComponent implements OnInit, AfterViewInit {
       }
     };
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
 }
