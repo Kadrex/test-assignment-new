@@ -1,5 +1,5 @@
-<div class="container mat-elevation-z4">
-  <mat-card *ngIf="(checkout$ | async) as checkout">
+<div *ngIf="(checkout$ | async) as checkout" class="container">
+  <mat-card>
     <mat-card-title>{{checkout.borrowedBook.title}}</mat-card-title>
     <mat-card-content>
       <mat-nav-list>
@@ -18,5 +18,8 @@
       </mat-nav-list>
     </mat-card-content>
   </mat-card>
+  <div class="buttons-container">
+    <button class="first-button-in-row" mat-raised-button color="primary" [routerLink]="['/checkout-form', checkout.id]">Edit</button>
+  </div>
 </div>
 

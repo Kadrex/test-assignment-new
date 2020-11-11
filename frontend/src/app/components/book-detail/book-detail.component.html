@@ -31,7 +31,10 @@
     </mat-card-content>
   </mat-card>
   <div class="buttons-container">
-    <button class="first-button-in-row" mat-raised-button color="primary" [routerLink]="['/book-form/edit', book.id]">Edit</button>
+    <button class="first-button-in-row" mat-raised-button color="primary"
+            [routerLink]="['/book-form/edit', book.id]">Edit</button>
+    <button *ngIf="isBookAvailable(book.status)" class="first-button-in-row"
+            mat-raised-button color="primary" [routerLink]="['/checkout-form/new', book.id]">Checkout</button>
     <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
          [matTooltipDisabled]="isBookAvailable(book.status)" class="delete-button-container">
     <button class="activity-button" [disabled]="!isBookAvailable(book.status)"

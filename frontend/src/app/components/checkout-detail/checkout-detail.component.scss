@@ -1,4 +1,18 @@
 .container {
-  max-width: 512px;
-  margin: 10em auto;
+  min-width: 400px;
+  margin: 6em auto;
+  width: 33%;
+}
+
+.buttons-container {
+  margin-top: 20px;
+}
+
+.delete-button-container {
+  width: min-content;
+  display: inline-block;
+}
+
+.first-button-in-row {
+  margin-right: 20px;
 }
