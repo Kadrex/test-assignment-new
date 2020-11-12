@@ -3,9 +3,28 @@
     <a>Books</a>
   </div>
   <div class="mat-elevation-z4">
-    <mat-form-field class="filter-freetext">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Alice in Wonderland">
+    <mat-form-field class="filter-books first">
+      <mat-label>Filter by title</mat-label>
+      <input [(ngModel)]="filterTitle" matInput (keyup)="filterChange(filterBy[0], filterTitle)" placeholder="Ex. Tender Is the Night">
+    </mat-form-field>
+    <mat-form-field class="filter-books second">
+      <mat-label>Filter by author</mat-label>
+      <input [(ngModel)]="filterAuthor" matInput (keyup)="filterChange(filterBy[1], filterAuthor)" placeholder="Ex. Ben Sanford">
+    </mat-form-field>
+    <mat-form-field class="filter-books second">
+      <mat-label>Filter by genre</mat-label>
+      <mat-select (selectionChange)="filterChange(filterBy[2], filterGenre)" [(ngModel)]="filterGenre">
+        <input class="genres-search" placeholder="Search..." matInput (keyup)="onKey($event)">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let genre of selectedGenres" [value]="genre">{{genre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="filter-books second">
+      <mat-label>Filter by status</mat-label>
+      <mat-select (selectionChange)="filterChange(filterBy[3], filterStatus)" [(ngModel)]="filterStatus">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -24,9 +43,9 @@
         <mat-cell *matCellDef="let book">{{book.genre}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="available">
-        <mat-header-cell *matHeaderCellDef>Available</mat-header-cell>
-        <mat-cell *matCellDef="let book" [attr.colspan]>{{isAvailable(book)}}</mat-cell>
+      <ng-container matColumnDef="status">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let book" [attr.colspan]>{{book.status.toLocaleLowerCase()}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
