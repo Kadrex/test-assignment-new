@@ -49,6 +49,30 @@ export class CheckoutsListComponent implements OnInit, AfterViewInit {
           return item[property];}
       }
     };
+    // https://stackoverflow.com/questions/57700078/angular-material-mat-table-not-returning-any-results-upon-filter
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      const accumulator = (currentTerm, key) => {
+        return this.nestedFilterCheck(currentTerm, data, key);
+      };
+      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      // Transform the filter by converting it to lowercase and removing whitespace.
+      const transformedFilter = filter.trim().toLowerCase();
+      return dataStr.indexOf(transformedFilter) !== -1;
+    }
+  }
+
+  nestedFilterCheck(search, data, key) {
+    // https://stackoverflow.com/questions/57700078/angular-material-mat-table-not-returning-any-results-upon-filter
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
   }
 
   applyFilter(event: Event) {
