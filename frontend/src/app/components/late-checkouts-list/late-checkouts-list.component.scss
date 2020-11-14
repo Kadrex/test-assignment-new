@@ -34,3 +34,11 @@
   font-size: 18px;
   margin-bottom: 2em;
 }
+
+mat-card-title {
+  cursor: pointer;
+}
+
+mat-card-title:hover {
+  text-decoration: underline;
+}

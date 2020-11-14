@@ -12,3 +12,11 @@
 .overdue {
   color: red;
 }
+
+mat-card-title {
+  cursor: pointer;
+}
+
+mat-card-title:hover {
+  text-decoration: underline;
+}

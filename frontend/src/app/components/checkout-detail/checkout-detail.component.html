@@ -1,6 +1,6 @@
 <div class="container" *ngIf="(checkout$ | async) as checkout">
   <mat-card class="mat-elevation-z8">
-    <mat-card-title>{{checkout.borrowedBook.title}}</mat-card-title>
+    <mat-card-title [routerLink]="['/books', checkout.borrowedBook.id]">{{checkout.borrowedBook.title}}</mat-card-title>
     <mat-card-subtitle>by {{checkout.borrowedBook.author}}</mat-card-subtitle>
     <mat-card-content>
       <p>Borrower's first name: {{checkout.borrowerFirstName}}</p>
