@@ -1,52 +1,29 @@
 <div class="container" *ngIf="(book$ | async) as book">
-  <mat-card>
+  <mat-card class="mat-elevation-z8">
     <mat-card-title>{{book.title}}</mat-card-title>
+    <mat-card-subtitle>by {{book.author}}</mat-card-subtitle>
     <mat-card-content>
-      <mat-nav-list>
-        <a mat-list-item>
-          Author: {{book.author}}
-        </a>
-        <a mat-list-item>
-          Genre: {{book.genre}}
-        </a>
-        <a mat-list-item>
-          Year: {{book.year}}
-        </a>
-        <a mat-list-item>
-          Added: {{book.added}}
-        </a>
-        <a mat-list-item>
-          Status: {{book.status}}
-        </a>
-        <a mat-list-item *ngIf="book.status === BORROWED">
-          Borrowed due date: {{book.dueDate}}
-        </a>
-        <a mat-list-item>
-          Times checked out: {{book.checkOutCount}}
-        </a>
-        <a mat-list-item *ngIf="book.comment != null">
-          Comment: {{book.comment}}
-        </a>
-      </mat-nav-list>
+      <p>Year: {{book.year}}</p>
+      <p>Genre: {{book.genre}}</p>
+      <p>Added: {{book.added}}</p>
+      <p>Status: {{book.status}}</p>
+      <p *ngIf="book.status === BORROWED">Borrowed due: {{book.dueDate}}</p>
+      <p>Times checked out: {{book.checkOutCount}}</p>
+      <p *ngIf="book.comment != null">Comment: {{book.comment}}</p>
+
+      <button *ngIf="!isInFavorites(book.id)" (click)="addBookToFavorites(book.id)" class="not-last-button-in-row" mat-stroked-button>
+        <mat-icon color="primary">favorite</mat-icon>Add to favorites</button>
+      <button *ngIf="isInFavorites(book.id)" (click)="removeBookFromFavorites(book.id)" class="not-last-button-in-row" mat-stroked-button>
+        <mat-icon color="primary">favorite</mat-icon>Remove from favorites</button>
+      <button class="not-last-button-in-row" mat-raised-button color="primary"
+              [routerLink]="['/book-form/edit', book.id]">Edit</button>
+      <button *ngIf="isBookAvailable(book.status)" class="not-last-button-in-row"
+              mat-raised-button color="primary" [routerLink]="['/checkout-form/new', book.id]">Checkout</button>
+      <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
+           [matTooltipDisabled]="isBookAvailable(book.status)" class="delete-button-container">
+        <button class="activity-button" [disabled]="!isBookAvailable(book.status)"
+                (click)="openDialog()" mat-raised-button color="warn">Delete</button>
+        </div>
     </mat-card-content>
   </mat-card>
-  <div class="buttons-container">
-    <button *ngIf="!isInFavorites(book.id)" (click)="addBookToFavorites(book.id)" class="first-button-in-row" mat-stroked-button>
-      <mat-icon color="primary">favorite</mat-icon>
-      Add to favorites
-    </button>
-    <button *ngIf="isInFavorites(book.id)" (click)="removeBookFromFavorites(book.id)" class="first-button-in-row" mat-stroked-button>
-      <mat-icon color="primary">favorite</mat-icon>
-      Remove from favorites
-    </button>
-    <button class="first-button-in-row" mat-raised-button color="primary"
-            [routerLink]="['/book-form/edit', book.id]">Edit</button>
-    <button *ngIf="isBookAvailable(book.status)" class="first-button-in-row"
-            mat-raised-button color="primary" [routerLink]="['/checkout-form/new', book.id]">Checkout</button>
-    <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
-         [matTooltipDisabled]="isBookAvailable(book.status)" class="delete-button-container">
-    <button class="activity-button" [disabled]="!isBookAvailable(book.status)"
-            (click)="openDialog()" mat-raised-button color="warn">Delete</button>
-  </div>
-  </div>
 </div>

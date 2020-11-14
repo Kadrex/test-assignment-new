@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialog } from "../confirmation-dialog/confirmation-dialog.component";
-import {JsonObject} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 @Component({
   selector: 'app-book-detail',
