@@ -7,7 +7,7 @@
       <p>Borrower's last name: {{checkout.borrowerLastName}}</p>
       <p>Date checked out: {{checkout.checkedOutDate}}</p>
       <p>Due date: {{checkout.dueDate}}</p>
-      <p class="overdue" *ngIf="isOverdue(checkout.dueDate) > 0">{{this.overdueText}}</p>
+      <p class="overdue" *ngIf="isOverdue(checkout.dueDate)">{{this.overdueText}}</p>
 
       <button class="not-last-button-in-row" mat-raised-button color="accent" routerLink="/checkouts">Back</button>
       <button class="not-last-button-in-row" mat-raised-button color="primary" [routerLink]="['/checkout-form', checkout.id]">Edit</button>

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { BookService } from '../../services/book.service';
-import {Book} from "../../models/book";
-import {DatePipe} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import { Book } from "../../models/book";
+import { DatePipe } from "@angular/common";
+import { ActivatedRoute } from "@angular/router";
+import {BookStatus} from "../../models/book-status";
 
 @Component({
   selector: 'app-book-form',
@@ -23,6 +24,7 @@ export class BookFormComponent implements OnInit {
   public pageTitle: string;
   private NEW_BOOK: string = 'New book';
   private EDIT_BOOK: string = 'Edit book';
+  private statusProcessing: BookStatus = 'PROCESSING';
 
 
   constructor(
@@ -51,7 +53,7 @@ export class BookFormComponent implements OnInit {
 
   initializeNewBook(): void {
     this.book = {id: null, title: '', author: '', genre: '', year: null, added: null,
-      checkOutCount: 0, dueDate: null, status: 'AVAILABLE', comment: null};
+      checkOutCount: 0, dueDate: null, status: this.statusProcessing, comment: null};
     this.book.added = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.year = new Date().getFullYear();
     this.book.id = this.generateId();
