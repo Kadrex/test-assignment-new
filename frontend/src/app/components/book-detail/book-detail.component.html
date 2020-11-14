@@ -31,6 +31,14 @@
     </mat-card-content>
   </mat-card>
   <div class="buttons-container">
+    <button *ngIf="!isInFavorites(book.id)" (click)="addBookToFavorites(book.id)" class="first-button-in-row" mat-stroked-button>
+      <mat-icon color="primary">favorite</mat-icon>
+      Add to favorites
+    </button>
+    <button *ngIf="isInFavorites(book.id)" (click)="removeBookFromFavorites(book.id)" class="first-button-in-row" mat-stroked-button>
+      <mat-icon color="primary">favorite</mat-icon>
+      Remove from favorites
+    </button>
     <button class="first-button-in-row" mat-raised-button color="primary"
             [routerLink]="['/book-form/edit', book.id]">Edit</button>
     <button *ngIf="isBookAvailable(book.status)" class="first-button-in-row"

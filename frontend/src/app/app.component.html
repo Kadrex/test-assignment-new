@@ -7,12 +7,12 @@
 </mat-toolbar>
 
 <!-- Body -->
-<mat-drawer-container autosize>
+<mat-drawer-container autosize class="container">
   <mat-drawer #drawer class="sidenav" mode="side">
     <mat-nav-list>
       <a mat-list-item routerLink="/books"><mat-icon>library_books</mat-icon>Books</a>
       <a mat-list-item routerLink="/checkouts"><mat-icon>local_library</mat-icon>Checkouts</a>
-      <a mat-list-item><mat-icon>favorite</mat-icon>Favorite books</a>
+      <a mat-list-item routerLink="/favorites"><mat-icon>favorite</mat-icon>Favorite books</a>
       <a mat-list-item><mat-icon>schedule</mat-icon>Late checkouts</a>
     </mat-nav-list>
   </mat-drawer>

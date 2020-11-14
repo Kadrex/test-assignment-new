@@ -1,0 +1,40 @@
+.card-container {
+  min-width: 380px;
+  margin-top: 6em;
+  margin-right: auto;
+  margin-left: 20px;
+  width: 24%;
+  padding-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 6em;
+}
+
+.first-button-in-row {
+  margin-right: 20px;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 15px;
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 45px;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.no-books-container {
+  text-align: center;
+  margin: 6em auto;
+}
+
+.no-books-container p {
+  font-size: 18px;
+  margin-bottom: 2em;
+}

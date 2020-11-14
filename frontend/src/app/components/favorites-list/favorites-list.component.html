@@ -1,0 +1,30 @@
+<div class="page-title">
+  <a>Favorite books</a>
+</div>
+<div class="container">
+    <mat-card *ngFor="let book of favoriteBooks" class="mat-elevation-z8 card-container">
+      <mat-card-title>{{book.title}}</mat-card-title>
+      <mat-card-subtitle>by {{book.author}}</mat-card-subtitle>
+      <mat-card-content>
+        <p>Year: {{book.year}}</p>
+        <p>Genre: {{book.genre}}</p>
+        <p>Added: {{book.added}}</p>
+        <p>Status: {{book.status}}</p>
+        <p *ngIf="book.status === BORROWED">Borrowed due: {{book.dueDate}}</p>
+        <p>Times checked out: {{book.checkOutCount}}</p>
+        <p *ngIf="book.comment != null">Comment: {{book.comment}}</p>
+        <div class="buttons-container">
+          <button mat-stroked-button (click)="openDialog(book.id)" class="first-button-in-row">
+            <mat-icon color="primary">favorite</mat-icon>
+            Remove from favorites
+          </button>
+          <button *ngIf="isBookAvailable(book.status)" mat-raised-button
+                  color="primary" [routerLink]="['/checkout-form/new', book.id]">Checkout</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  <div *ngIf="favoriteBooks.length < 1" class="no-books-container">
+    <p>You don't have any favorite books yet.</p>
+    <button mat-raised-button routerLink="/books" color="primary">To the books</button>
+  </div>
+</div>

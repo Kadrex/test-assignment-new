@@ -9,3 +9,8 @@
 a mat-icon {
   padding-right: 15px;
 }
+
+.container {
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+}

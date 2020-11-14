@@ -85,25 +85,26 @@ export class CheckoutFormComponent implements OnInit {
     return !(!this.checkout.borrowerFirstName || !this.checkout.borrowerLastName || !this.dueDate || !this.fromDate);
   }
 
-  saveCheckout(): void {
+  saveCheckout(goTo: string): void {
     this.checkout.dueDate = this.datePipe.transform(this.dueDate, 'yyyy-MM-dd');
     this.checkout.checkedOutDate = this.datePipe.transform(this.fromDate, 'yyyy-MM-dd');
     this.checkout.borrowedBook.status = this.BOOK_STATUS_BORROWED;
-    this.checkoutService.saveCheckout(this.checkout).subscribe();
+    this.checkout.borrowedBook.checkOutCount += 1;
+    this.checkoutService.saveCheckout(this.checkout).subscribe(() => {
+      window.location.href = goTo;
+    });
     this.bookService.saveBook(this.checkout.borrowedBook).subscribe();
   }
 
   saveCheckoutAndView(): void {
     if (this.checkDates()) {
-      this.saveCheckout();
-      window.location.href = '/checkouts/' + this.checkout.id;
+      this.saveCheckout('/checkouts/' + this.checkout.id);
     }
   }
 
   saveCheckoutAndTable(): void {
     if (this.checkDates()) {
-      this.saveCheckout();
-      window.location.href = '/checkouts';
+      this.saveCheckout('/checkouts');
     }
   }
 

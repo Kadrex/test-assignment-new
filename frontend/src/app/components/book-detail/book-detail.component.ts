@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialog } from "../confirmation-dialog/confirmation-dialog.component";
+import {JsonObject} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 @Component({
   selector: 'app-book-detail',
@@ -16,8 +17,11 @@ export class BookDetailComponent implements OnInit {
 
   public book$: Observable<Book | Error>;
   private dialogText: string = 'Do you really wish to delete this book?';
+  public addRemoveFavorite: string = 'Add to favorites';
   public BORROWED: string = 'BORROWED';
   private AVAILABLE: string = 'AVAILABLE';
+  private FAVORITE_BOOKS_KEY: string = 'favoriteBooks';
+  private BOOKS_KEY: string = 'books';
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +60,34 @@ export class BookDetailComponent implements OnInit {
         this.deleteBook()
       }
     })
+  }
+
+  isInFavorites(id: string): boolean {
+    let favoriteBooks = localStorage.getItem(this.FAVORITE_BOOKS_KEY);
+    if (favoriteBooks === null) {
+      return false;
+    }
+    let array = JSON.parse(favoriteBooks)[this.BOOKS_KEY];
+    return !!array.some(x => x === id);
+  }
+
+  addBookToFavorites(id: string): void {
+    let favoriteBooks = localStorage.getItem(this.FAVORITE_BOOKS_KEY);
+    if (favoriteBooks === null) {
+      let favorites = {'books': [id]};
+      localStorage.setItem(this.FAVORITE_BOOKS_KEY, JSON.stringify(favorites));
+    } else {
+      let json = JSON.parse(favoriteBooks);
+      json[this.BOOKS_KEY].push(id);
+      localStorage.setItem(this.FAVORITE_BOOKS_KEY, JSON.stringify(json));
+    }
+  }
+
+  removeBookFromFavorites(id: string): void {
+    let favoriteBooks = localStorage.getItem(this.FAVORITE_BOOKS_KEY);
+    let array = JSON.parse(favoriteBooks)[this.BOOKS_KEY];
+    let newArray = array.filter(x => x != id);
+    localStorage.setItem(this.FAVORITE_BOOKS_KEY, JSON.stringify({'books': newArray}));
   }
 
 }
