@@ -77,6 +77,7 @@ export class CheckoutsListComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
+    // https://material.angular.io/components/table/examples
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }

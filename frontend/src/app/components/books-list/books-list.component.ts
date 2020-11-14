@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {BookService} from '../../services/book.service';
-import {Page} from '../../models/page';
-import {Book} from '../../models/book';
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { BookService } from '../../services/book.service';
+import { Page } from '../../models/page';
+import { Book } from '../../models/book';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-books-list',
@@ -73,11 +73,13 @@ export class BooksListComponent implements OnInit, AfterViewInit {
   }
 
   filterChange(filter, stringMatch): void {
+    // https://www.freakyjolly.com/angular-material-table-custom-filter-using-select-box/#.X7BcCWgzaM_
     this.filterValues[filter.column] = stringMatch.trim().toLocaleLowerCase();
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
   createFilter() {
+    // https://www.freakyjolly.com/angular-material-table-custom-filter-using-select-box/#.X7BcCWgzaM_
     return function (data: any, filter: string): boolean {
       let searchTerms = JSON.parse(filter);
       let isFilterSet = false;
@@ -109,6 +111,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
   }
 
   getFilterObject(data, key): any[] {
+    // https://www.freakyjolly.com/angular-material-table-custom-filter-using-select-box/#.X7BcCWgzaM_
     const unique = [];
     data.filter((obj) => {
       if (!unique.includes(obj[key])) {
@@ -120,6 +123,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
   }
 
   onKey(event): void {
+    // https://stackoverflow.com/questions/48442794/implement-a-search-filter-for-the-mat-select-component-of-angular-material
     this.selectedGenres = this.search(event.target.value);
   }
 

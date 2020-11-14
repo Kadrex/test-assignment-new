@@ -1,6 +1,6 @@
-import { Component, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { BookDetailComponent, DialogData } from "../book-detail/book-detail.component";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { BookDetailComponent, DialogData } from '../book-detail/book-detail.component';
 
 @Component({
   selector: 'confirmation-dialog.component',
@@ -16,6 +16,7 @@ export class ConfirmationDialog {
   }
 
   onNoClick(): void {
+    // https://material.angular.io/components/dialog/overview
     this.dialogRef.close()
   }
 

@@ -2,6 +2,7 @@
   <a>Favorite books</a>
 </div>
 <div class="container">
+  <!-- https://material.angular.io/components/card/overview -->
     <mat-card *ngFor="let book of favoriteBooks" class="mat-elevation-z8 card-container">
       <mat-card-title>{{book.title}}</mat-card-title>
       <mat-card-subtitle>by {{book.author}}</mat-card-subtitle>

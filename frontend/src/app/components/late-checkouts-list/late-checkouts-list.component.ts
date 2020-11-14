@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from "../../services/book.service";
-import { MatDialog } from "@angular/material/dialog";
-import { ConfirmationDialog } from "../confirmation-dialog/confirmation-dialog.component";
-import { CheckoutService } from "../../services/checkout.service";
-import { Page } from "../../models/page";
-import { Checkout } from "../../models/checkout";
-import { DatePipe } from "@angular/common";
+import { BookService } from '../../services/book.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
+import { CheckoutService } from '../../services/checkout.service';
+import { Page } from '../../models/page';
+import { Checkout } from '../../models/checkout';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-late-checkouts-list',
