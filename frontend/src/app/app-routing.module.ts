@@ -7,6 +7,7 @@ import {CheckoutDetailComponent} from "./components/checkout-detail/checkout-det
 import {BookFormComponent} from "./components/book-form/book-form.component";
 import {CheckoutFormComponent} from "./components/checkout-form/checkout-form.component";
 import {FavoritesListComponent} from "./components/favorites-list/favorites-list.component";
+import {LateCheckoutsListComponent} from "./components/late-checkouts-list/late-checkouts-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'books', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'book-form/edit/:id', component: BookFormComponent},
   {path: 'checkout-form/new/:id', component: CheckoutFormComponent},
   {path: 'checkout-form/:id', component: CheckoutFormComponent},
-  {path: 'favorites', component: FavoritesListComponent}
+  {path: 'favorites', component: FavoritesListComponent},
+  {path: 'late-checkouts', component: LateCheckoutsListComponent}
 ];
 
 @NgModule({

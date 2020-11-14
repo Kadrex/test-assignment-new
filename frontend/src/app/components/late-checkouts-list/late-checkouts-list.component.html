@@ -1,0 +1,23 @@
+<div class="page-title">
+  <a>Late checkouts</a>
+</div>
+<div class="container">
+  <mat-card *ngFor="let checkout of lateCheckouts" matBadge="{{daysOverdue(checkout.dueDate)}}"
+            matBadgeColor="warn" class="mat-elevation-z8 card-container">
+    <mat-card-title>{{checkout.borrowedBook.title}}</mat-card-title>
+    <mat-card-subtitle>by {{checkout.borrowedBook.author}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>Date checked out: {{checkout.checkedOutDate}}</p>
+      <p>Due date: {{checkout.dueDate}}</p>
+      <div class="buttons-container">
+        <button mat-raised-button (click)="openDialog(checkout.id, checkout.borrowedBook)"
+                class="first-button-in-row" color="primary">
+          Return book
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="lateCheckouts.length < 1" class="no-late-checkouts-container">
+    <p>You don't have any late checkouts. <mat-icon>done_all</mat-icon></p>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.card-container {
+  min-width: 300px;
+  margin-top: 6em;
+  margin-right: auto;
+  margin-left: 20px;
+  width: 20%;
+  padding-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 6em;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 15px;
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 45px;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.no-late-checkouts-container {
+  text-align: center;
+  margin: 6em auto;
+}
+
+.no-late-checkouts-container p {
+  font-size: 18px;
+  margin-bottom: 2em;
+}
