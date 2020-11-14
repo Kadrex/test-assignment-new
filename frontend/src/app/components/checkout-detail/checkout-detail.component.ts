@@ -16,7 +16,7 @@ import { MatDialog } from "@angular/material/dialog";
 })
 export class CheckoutDetailComponent implements OnInit {
 
-  private BOOK_STATUS_AVAILABLE: BookStatus = 'AVAILABLE';
+  private BOOK_STATUS_RETURNED: BookStatus = 'RETURNED';
   private dialogText: string = 'Do you really wish to return this book?';
   public overdueText: string;
   public checkout$: Observable<Checkout | Error>;
@@ -49,7 +49,7 @@ export class CheckoutDetailComponent implements OnInit {
   }
 
   returnBook(id, book): void {
-    book.status = this.BOOK_STATUS_AVAILABLE;
+    book.status = this.BOOK_STATUS_RETURNED;
     this.bookService.saveBook(book).subscribe();
     this.checkoutService.deleteCheckout(id).subscribe();
     window.location.href = '/checkouts';

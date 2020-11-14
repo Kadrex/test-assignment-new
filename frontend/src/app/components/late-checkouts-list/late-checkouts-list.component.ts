@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {BookService} from "../../services/book.service";
-import {MatDialog} from "@angular/material/dialog";
-import {ConfirmationDialog} from "../confirmation-dialog/confirmation-dialog.component";
-import {CheckoutService} from "../../services/checkout.service";
-import {Page} from "../../models/page";
-import {Checkout} from "../../models/checkout";
-import {DatePipe} from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { BookService } from "../../services/book.service";
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmationDialog } from "../confirmation-dialog/confirmation-dialog.component";
+import { CheckoutService } from "../../services/checkout.service";
+import { Page } from "../../models/page";
+import { Checkout } from "../../models/checkout";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-late-checkouts-list',
@@ -16,7 +16,7 @@ import {DatePipe} from "@angular/common";
 export class LateCheckoutsListComponent implements OnInit {
 
   private dialogText: string = 'Are you sure you wish to return that book?';
-  private BOOK_STATUS_AVAILABLE = 'AVAILABLE';
+  private BOOK_STATUS_RETURNED = 'RETURNED';
   public lateCheckouts: Checkout[] = [];
 
   constructor(
@@ -56,6 +56,7 @@ export class LateCheckoutsListComponent implements OnInit {
   }
 
   openDialog(id, book): void {
+    // https://material.angular.io/components/dialog/overview
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {text: this.dialogText
       }});
@@ -68,7 +69,7 @@ export class LateCheckoutsListComponent implements OnInit {
   }
 
   returnBook(id, book): void {
-    book.status = this.BOOK_STATUS_AVAILABLE;
+    book.status = this.BOOK_STATUS_RETURNED;
     this.bookService.saveBook(book).subscribe();
     this.checkoutService.deleteCheckout(id).subscribe();
     this.lateCheckouts = this.lateCheckouts.filter(c => c.id != id);
