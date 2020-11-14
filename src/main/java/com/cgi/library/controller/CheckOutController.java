@@ -33,7 +33,7 @@ public class CheckOutController {
         return ResponseEntity.ok("");
     }
 
-    @DeleteMapping(value = "checkout")
+    @DeleteMapping(value = "deleteCheckout")
     public ResponseEntity<String> deleteCheckOut(@RequestParam(value = "checkOutId") UUID checkOutId) {
         checkOutService.deleteCheckOut(checkOutId);
         return ResponseEntity.ok("");
