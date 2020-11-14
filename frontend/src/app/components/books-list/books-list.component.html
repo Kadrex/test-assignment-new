@@ -3,6 +3,7 @@
     <a>Books</a>
   </div>
   <div class="mat-elevation-z4">
+    <!-- https://www.freakyjolly.com/angular-material-table-custom-filter-using-select-box/#.X7BcCWgzaM_ -->
     <mat-form-field class="filter-books first">
       <mat-label>Filter by title</mat-label>
       <input [(ngModel)]="filterTitle" matInput (keyup)="filterChange(filterBy[0], filterTitle)" placeholder="Ex. Tender Is the Night">
@@ -26,6 +27,8 @@
         <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <!-- https://material.angular.io/components/table/overview -->
     <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="title">

@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import {Book} from "../../models/book";
-import {DatePipe} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
-import {Checkout} from "../../models/checkout";
-import {CheckoutService} from "../../services/checkout.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {BookStatus} from "../../models/book-status";
+import { Book } from '../../models/book';
+import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Checkout } from '../../models/checkout';
+import { CheckoutService } from '../../services/checkout.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BookStatus } from '../../models/book-status';
 
 @Component({
   selector: 'app-checkout-form',
@@ -109,6 +109,7 @@ export class CheckoutFormComponent implements OnInit {
   }
 
   checkDates(): boolean {
+    // https://material.angular.io/components/snack-bar/overview
     if (this.fromDate > this.dueDate) {
       this.snackBar.open(this.SNACKBAR_MESSAGE, this.SNACKBAR_ACTION, {
         duration: 3000

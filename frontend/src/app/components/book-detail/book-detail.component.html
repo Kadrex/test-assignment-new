@@ -1,4 +1,5 @@
 <div class="container" *ngIf="(book$ | async) as book">
+  <!-- https://material.angular.io/components/card/overview -->
   <mat-card class="mat-elevation-z8">
     <mat-card-title>{{book.title}}</mat-card-title>
     <mat-card-subtitle>by {{book.author}}</mat-card-subtitle>
@@ -19,8 +20,10 @@
               [routerLink]="['/book-form/edit', book.id]">Edit</button>
       <button *ngIf="isBookAvailable(book.status)" class="not-last-button-in-row"
               mat-raised-button color="primary" [routerLink]="['/checkout-form/new', book.id]">Checkout</button>
+      <!-- https://material.angular.io/components/tooltip/overview -->
       <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
            [matTooltipDisabled]="isBookAvailable(book.status)" class="delete-button-container">
+        <!-- https://material.angular.io/components/dialog/overview -->
         <button class="activity-button" [disabled]="!isBookAvailable(book.status)"
                 (click)="openDialog()" mat-raised-button color="warn">Delete</button>
         </div>

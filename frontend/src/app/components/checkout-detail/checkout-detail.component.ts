@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
-import { CheckoutService } from "../../services/checkout.service";
-import { Checkout } from "../../models/checkout";
-import { BookService } from "../../services/book.service";
-import { BookStatus } from "../../models/book-status";
-import { ConfirmationDialog } from "../confirmation-dialog/confirmation-dialog.component";
-import { MatDialog } from "@angular/material/dialog";
+import { CheckoutService } from '../../services/checkout.service';
+import { Checkout } from '../../models/checkout';
+import { BookService } from '../../services/book.service';
+import { BookStatus } from '../../models/book-status';
+import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-checkout-detail',

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { Book } from "../../models/book";
-import { DatePipe } from "@angular/common";
-import { ActivatedRoute } from "@angular/router";
-import {BookStatus} from "../../models/book-status";
+import { Book } from '../../models/book';
+import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { BookStatus } from '../../models/book-status';
 
 @Component({
   selector: 'app-book-form',

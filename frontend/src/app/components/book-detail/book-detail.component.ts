@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
-import { MatDialog } from "@angular/material/dialog";
-import { ConfirmationDialog } from "../confirmation-dialog/confirmation-dialog.component";
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-book-detail',
@@ -50,6 +50,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   openDialog(): void {
+    // https://material.angular.io/components/dialog/overview
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       data: {text: this.dialogText
       }});
@@ -71,6 +72,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   addBookToFavorites(id: string): void {
+    // https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
     let favoriteBooks = localStorage.getItem(this.FAVORITE_BOOKS_KEY);
     if (favoriteBooks === null) {
       let favorites = {'books': [id]};

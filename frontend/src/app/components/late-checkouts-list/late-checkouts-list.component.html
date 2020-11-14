@@ -2,6 +2,7 @@
   <a>Late checkouts</a>
 </div>
 <div class="container">
+  <!-- https://material.angular.io/components/card/overview -->
   <mat-card *ngFor="let checkout of lateCheckouts" matBadge="{{daysOverdue(checkout.dueDate)}}"
             matBadgeColor="warn" class="mat-elevation-z8 card-container">
     <mat-card-title [routerLink]="['/books', checkout.borrowedBook.id]">{{checkout.borrowedBook.title}}</mat-card-title>

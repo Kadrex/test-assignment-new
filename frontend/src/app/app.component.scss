@@ -11,6 +11,7 @@ a mat-icon {
 }
 
 .container {
+  // https://stackoverflow.com/questions/26275982/putting-moz-available-and-webkit-fill-available-in-one-width-css-property
   min-height: -moz-available;
   min-height: -webkit-fill-available;
 }
