@@ -20,7 +20,8 @@
       <mat-form-field class="book-info-field-small first-field-on-row" appearance="fill">
         <mat-label>Genre</mat-label>
         <mat-select required [(ngModel)]="book.genre">
-          <mat-option *ngFor="let genre of genres" ngDefaultControl [value]="genre">{{genre}}</mat-option>
+          <input class="genres-search" placeholder="Search..." matInput (keyup)="onKey($event)">
+          <mat-option *ngFor="let genre of selectedGenres" ngDefaultControl [value]="genre">{{genre}}</mat-option>
         </mat-select>
       </mat-form-field>
 

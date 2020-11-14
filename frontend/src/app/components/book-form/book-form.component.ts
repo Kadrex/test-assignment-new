@@ -13,11 +13,12 @@ import {BookStatus} from "../../models/book-status";
 })
 export class BookFormComponent implements OnInit {
 
-  public genres: string[] = ['Fiction narrative', 'Narrative nonfiction', 'Metafiction', 'Classic', 'Tall tale',
+  private genres: string[] = ['Fiction narrative', 'Narrative nonfiction', 'Metafiction', 'Classic', 'Tall tale',
     'Mystery', 'Science fiction', 'Fanfiction', 'Essay', 'Comic/Graphic Novel', 'Fiction in verse',
     'Historical fiction', 'Fable', 'Realistic fiction', 'Folklore', 'Short story', 'Crime/Detective',
     'Fairy tale', 'Reference book', 'Textbook', 'Horror', 'Speech', 'Suspense/Thriller', 'Humor',
     'Biography/Autobiography', 'Legend', 'Mythopoeia', 'Western', 'Mythology', 'Fantasy', 'Other'];
+  public selectedGenres: string[] = this.genres;
   public book: Book;
   public year: number;
   public bookIsLoaded: boolean = false;
@@ -89,6 +90,16 @@ export class BookFormComponent implements OnInit {
   saveBookAndTable(): void {
     this.saveBook();
     window.location.href = '/books';
+  }
+
+  onKey(event): void {
+    // https://stackoverflow.com/questions/48442794/implement-a-search-filter-for-the-mat-select-component-of-angular-material
+    this.selectedGenres = this.search(event.target.value);
+  }
+
+  search(value: string): string[] {
+    let filter = value.toLocaleLowerCase();
+    return this.genres.filter(o => o.toLocaleLowerCase().startsWith(filter))
   }
 
 }
