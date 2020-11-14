@@ -1,27 +1,18 @@
-<div *ngIf="(checkout$ | async) as checkout" class="container">
-  <mat-card>
+<div class="container" *ngIf="(checkout$ | async) as checkout">
+  <mat-card class="mat-elevation-z8">
     <mat-card-title>{{checkout.borrowedBook.title}}</mat-card-title>
+    <mat-card-subtitle>by {{checkout.borrowedBook.author}}</mat-card-subtitle>
     <mat-card-content>
-      <mat-nav-list>
-        <a mat-list-item>
-          Borrower first name: {{checkout.borrowerFirstName}}
-        </a>
-        <a mat-list-item>
-          Borrower last name: {{checkout.borrowerLastName}}
-        </a>
-        <a mat-list-item>
-          Date checked out: {{checkout.checkedOutDate}}
-        </a>
-        <a mat-list-item>
-          Due date: {{checkout.dueDate}}
-        </a>
-      </mat-nav-list>
+      <p>Borrower's first name: {{checkout.borrowerFirstName}}</p>
+      <p>Borrower's last name: {{checkout.borrowerLastName}}</p>
+      <p>Date checked out: {{checkout.checkedOutDate}}</p>
+      <p>Due date: {{checkout.dueDate}}</p>
+      <p class="overdue" *ngIf="isOverdue(checkout.dueDate) > 0">{{this.overdueText}}</p>
+
+      <button class="not-last-button-in-row" mat-raised-button color="accent" routerLink="/checkouts">Back</button>
+      <button class="not-last-button-in-row" mat-raised-button color="primary" [routerLink]="['/checkout-form', checkout.id]">Edit</button>
+      <button mat-raised-button color="primary" (click)="openDialog(checkout.id, checkout.borrowedBook)">Return the book</button>
+
     </mat-card-content>
   </mat-card>
-  <div class="buttons-container">
-    <button class="not-last-button-in-row" mat-raised-button color="accent" routerLink="/checkouts">Back</button>
-    <button class="not-last-button-in-row" mat-raised-button color="primary" [routerLink]="['/checkout-form', checkout.id]">Edit</button>
-    <button mat-raised-button color="primary" (click)="openDialog(checkout.id, checkout.borrowedBook)">Return the book</button>
-  </div>
 </div>
-
