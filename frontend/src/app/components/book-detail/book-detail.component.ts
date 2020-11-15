@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-detail',
@@ -21,11 +22,13 @@ export class BookDetailComponent implements OnInit {
   private AVAILABLE: string = 'AVAILABLE';
   private FAVORITE_BOOKS_KEY: string = 'favoriteBooks';
   private BOOKS_KEY: string = 'books';
+  private SNACKBAR_ACTION: string = 'Close';
 
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -41,8 +44,8 @@ export class BookDetailComponent implements OnInit {
       id = res['id']
       this.bookService.deleteBook(id).subscribe()
       window.location.href = '/books'
+      this.showSnackbar('Book successfully deleted.');
     })
-
   }
 
   isBookAvailable(status): boolean {
@@ -82,6 +85,7 @@ export class BookDetailComponent implements OnInit {
       json[this.BOOKS_KEY].push(id);
       localStorage.setItem(this.FAVORITE_BOOKS_KEY, JSON.stringify(json));
     }
+    this.showSnackbar('Book successfully added to favorites.');
   }
 
   removeBookFromFavorites(id: string): void {
@@ -89,6 +93,14 @@ export class BookDetailComponent implements OnInit {
     let array = JSON.parse(favoriteBooks)[this.BOOKS_KEY];
     let newArray = array.filter(x => x != id);
     localStorage.setItem(this.FAVORITE_BOOKS_KEY, JSON.stringify({'books': newArray}));
+    this.showSnackbar('Book successfully removed from favorites.');
+  }
+
+  showSnackbar(message: string): void {
+    // https://material.angular.io/components/snack-bar/overview
+    this.snackBar.open(message, this.SNACKBAR_ACTION, {
+        duration: 3000
+    });
   }
 
 }

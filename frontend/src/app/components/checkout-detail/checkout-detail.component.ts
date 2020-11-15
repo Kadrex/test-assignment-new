@@ -8,6 +8,7 @@ import { BookService } from '../../services/book.service';
 import { BookStatus } from '../../models/book-status';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-checkout-detail',
@@ -17,6 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class CheckoutDetailComponent implements OnInit {
 
   private BOOK_STATUS_RETURNED: BookStatus = 'RETURNED';
+  private SNACKBAR_ACTION: string = 'Close';
   private dialogText: string = 'Do you really wish to return this book?';
   public overdueText: string;
   public checkout$: Observable<Checkout | Error>;
@@ -25,7 +27,8 @@ export class CheckoutDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private checkoutService: CheckoutService,
     private bookService: BookService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -53,6 +56,7 @@ export class CheckoutDetailComponent implements OnInit {
     this.bookService.saveBook(book).subscribe();
     this.checkoutService.deleteCheckout(id).subscribe();
     window.location.href = '/checkouts';
+    this.showSnackbar('Book successfully returned.');
   }
 
   isOverdue(dueDateString: string): boolean {
@@ -67,6 +71,13 @@ export class CheckoutDetailComponent implements OnInit {
     }
     this.overdueText = 'Overdue by ' + daysOverdue + days;
     return daysOverdue > 0;
+  }
+
+  showSnackbar(message: string): void {
+    // https://material.angular.io/components/snack-bar/overview
+    this.snackBar.open(message, this.SNACKBAR_ACTION, {
+      duration: 3000
+    });
   }
 
 }

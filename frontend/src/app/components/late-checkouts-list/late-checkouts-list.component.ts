@@ -6,6 +6,8 @@ import { CheckoutService } from '../../services/checkout.service';
 import { Page } from '../../models/page';
 import { Checkout } from '../../models/checkout';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BookStatus } from '../../models/book-status';
 
 @Component({
   selector: 'app-late-checkouts-list',
@@ -15,15 +17,17 @@ import { DatePipe } from '@angular/common';
 })
 export class LateCheckoutsListComponent implements OnInit {
 
+  private BOOK_STATUS_RETURNED: BookStatus = 'RETURNED';
+  private SNACKBAR_ACTION: string = 'Close';
   private dialogText: string = 'Are you sure you wish to return that book?';
-  private BOOK_STATUS_RETURNED = 'RETURNED';
   public lateCheckouts: Checkout[] = [];
 
   constructor(
     private bookService: BookService,
     private checkoutService: CheckoutService,
     private dialog: MatDialog,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -73,6 +77,14 @@ export class LateCheckoutsListComponent implements OnInit {
     this.bookService.saveBook(book).subscribe();
     this.checkoutService.deleteCheckout(id).subscribe();
     this.lateCheckouts = this.lateCheckouts.filter(c => c.id != id);
+    this.showSnackbar('Book successfully returned.');
+  }
+
+  showSnackbar(message: string): void {
+    // https://material.angular.io/components/snack-bar/overview
+    this.snackBar.open(message, this.SNACKBAR_ACTION, {
+      duration: 3000
+    });
   }
 
 }

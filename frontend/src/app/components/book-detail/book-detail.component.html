@@ -19,7 +19,7 @@
       <button class="not-last-button-in-row" mat-raised-button color="primary"
               [routerLink]="['/book-form/edit', book.id]">Edit</button>
       <button *ngIf="isBookAvailable(book.status)" class="not-last-button-in-row"
-              mat-raised-button color="primary" [routerLink]="['/checkout-form/new', book.id]">Checkout</button>
+              mat-raised-button color="primary" [routerLink]="['/checkout-form/new', book.id]">Check out</button>
       <!-- https://material.angular.io/components/tooltip/overview -->
       <div matTooltip="Can't delete unavailable book" matTooltipPosition="after"
            [matTooltipDisabled]="isBookAvailable(book.status)" class="delete-button-container">

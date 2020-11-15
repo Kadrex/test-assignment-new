@@ -18,7 +18,6 @@ export class CheckoutFormComponent implements OnInit {
 
   private NEW_CHECKOUT: string = 'New checkout';
   private EDIT_CHECKOUT: string = 'Edit checkout';
-  private SNACKBAR_MESSAGE: string = 'Due date has to be after date checked out.';
   private SNACKBAR_ACTION: string = 'Close';
   private BOOK_STATUS_BORROWED: BookStatus = 'BORROWED';
 
@@ -94,6 +93,13 @@ export class CheckoutFormComponent implements OnInit {
       window.location.href = goTo;
     });
     this.bookService.saveBook(this.checkout.borrowedBook).subscribe();
+    let message;
+    if (this.pageTitle == this.NEW_CHECKOUT) {
+      message = 'Book successfully checked out.';
+    } else {
+      message = 'Checkout successfully updated.';
+    }
+    this.showSnackbar(message);
   }
 
   saveCheckoutAndView(): void {
@@ -109,14 +115,18 @@ export class CheckoutFormComponent implements OnInit {
   }
 
   checkDates(): boolean {
-    // https://material.angular.io/components/snack-bar/overview
     if (this.fromDate > this.dueDate) {
-      this.snackBar.open(this.SNACKBAR_MESSAGE, this.SNACKBAR_ACTION, {
-        duration: 3000
-      });
+      this.showSnackbar('Due date has to be after date checked out.');
       return false;
     }
     return true;
+  }
+
+  showSnackbar(message: string): void {
+    // https://material.angular.io/components/snack-bar/overview
+    this.snackBar.open(message, this.SNACKBAR_ACTION, {
+      duration: 3000
+    });
   }
 
 }
