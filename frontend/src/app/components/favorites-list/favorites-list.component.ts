@@ -3,6 +3,7 @@ import { Book } from '../../models/book';
 import { BookService } from '../../services/book.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-favorites-list',
@@ -11,16 +12,18 @@ import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.c
 })
 export class FavoritesListComponent implements OnInit {
 
-  public favoriteBooks: Book[];
   private FAVORITE_BOOKS_KEY: string = 'favoriteBooks';
   private BOOKS_KEY: string = 'books';
+  private SNACKBAR_ACTION: string = 'Close';
   public BORROWED: string = 'BORROWED';
   public AVAILABLE: string = 'AVAILABLE';
+  public favoriteBooks: Book[];
   private dialogText: string = 'Are you sure you wish to remove that book from favorites?';
 
   constructor(
     private bookService: BookService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -48,6 +51,7 @@ export class FavoritesListComponent implements OnInit {
     let array = JSON.parse(favoriteBooks)[this.BOOKS_KEY];
     let newArray = array.filter(x => x != id);
     localStorage.setItem(this.FAVORITE_BOOKS_KEY, JSON.stringify({'books': newArray}));
+    this.showSnackbar('Book successfully removed from favorites.');
     this.updateFavoriteBooks();
   }
 
@@ -66,6 +70,13 @@ export class FavoritesListComponent implements OnInit {
 
   isBookAvailable(status): boolean {
     return status === this.AVAILABLE
+  }
+
+  showSnackbar(message: string): void {
+    // https://material.angular.io/components/snack-bar/overview
+    this.snackBar.open(message, this.SNACKBAR_ACTION, {
+      duration: 3000
+    });
   }
 
 }

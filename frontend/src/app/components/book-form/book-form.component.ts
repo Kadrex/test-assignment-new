@@ -4,6 +4,7 @@ import { Book } from '../../models/book';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { BookStatus } from '../../models/book-status';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-form',
@@ -25,13 +26,15 @@ export class BookFormComponent implements OnInit {
   public pageTitle: string;
   private NEW_BOOK: string = 'New book';
   private EDIT_BOOK: string = 'Edit book';
-  private statusProcessing: BookStatus = 'PROCESSING';
+  private STATUS_PROCESSING: BookStatus = 'PROCESSING';
+  private SNACKBAR_ACTION: string = 'Close';
 
 
   constructor(
     private bookService: BookService,
     private datePipe: DatePipe,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -54,7 +57,7 @@ export class BookFormComponent implements OnInit {
 
   initializeNewBook(): void {
     this.book = {id: null, title: '', author: '', genre: '', year: null, added: null,
-      checkOutCount: 0, dueDate: null, status: this.statusProcessing, comment: null};
+      checkOutCount: 0, dueDate: null, status: this.STATUS_PROCESSING, comment: null};
     this.book.added = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.year = new Date().getFullYear();
     this.book.id = this.generateId();
@@ -80,6 +83,13 @@ export class BookFormComponent implements OnInit {
 
   saveBook(): void {
     this.bookService.saveBook(this.book).subscribe()
+    let message;
+    if (this.pageTitle == this.NEW_BOOK) {
+      message = 'New book successfully added.';
+    } else {
+      message = 'Book successfully updated.';
+    }
+    this.showSnackbar(message);
   }
 
   saveBookAndView(): void {
@@ -100,6 +110,13 @@ export class BookFormComponent implements OnInit {
   search(value: string): string[] {
     let filter = value.toLocaleLowerCase();
     return this.genres.filter(o => o.toLocaleLowerCase().startsWith(filter))
+  }
+
+  showSnackbar(message: string): void {
+    // https://material.angular.io/components/snack-bar/overview
+    this.snackBar.open(message, this.SNACKBAR_ACTION, {
+      duration: 3000
+    });
   }
 
 }
