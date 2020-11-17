@@ -71,3 +71,12 @@ If you have any questions, please reach out without hesitation. Best of luck!
 Reader should not be able to add / modify / delete existing book information or tamper with checkouts
 but should be able to save favorites and check out / return books (that they have checked out)
 
+
+## Implemented functionality
+
+There are four main views: books view, checkouts view, favorite books view and late checkouts view. 
+There are also individual views for books and checkouts and forms for adding a new book and checking out an existing book.
+
+The four main views are accesible via menu on the left which opens up when the menu icon in the top left corner is clicked.
+
+
