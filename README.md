@@ -71,3 +71,21 @@ If you have any questions, please reach out without hesitation. Best of luck!
 Reader should not be able to add / modify / delete existing book information or tamper with checkouts
 but should be able to save favorites and check out / return books (that they have checked out)
 
+
+## Implemented functionality
+
+There are four main views: books view, checkouts view, favorite books view and late checkouts view. 
+There are also individual views for books and checkouts and forms for adding a new book and checking out an existing book.
+
+The four main views are accessible via menu on the left which opens up when the menu icon in the top left corner is clicked.
+
+In books view user can see a table of books which can be filtered and sorted by every book parameter.
+When user clicks on book, individual book view opens where the user can add the book to favorites, remove it from favorites or check it out.
+If the user decides to check out the book and the book is available, checkout form appears.
+In books view user can also find a button which takes it to a form to add a new book to the library.
+In checkouts view user can see a table of checkouts which can be filtered by book parameters and borrower name.
+If the user clicks on checkout from the table, individual checkout view appears and the user can return the book.
+
+In favorite books view there are shown favorite books for current user. The user can remove books from favorites or check them out.
+
+In late checkouts view user can see all the late checkouts. The user can return the books.
